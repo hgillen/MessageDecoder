@@ -1,0 +1,219 @@
+﻿<UserControl x:Class="MessageDecoder.Views.MessageTypeDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessageDecoder.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <!--<Style x:Key="HeaderLength" />-->
+
+        <ControlTemplate x:Key="HeaderLength" TargetType="TextBox"
+                        >
+        </ControlTemplate>
+
+        <!--<DataTemplate DataType="{x:Type viewModels:MessageFieldDetailsViewModel}">
+        <views:MessageFieldDetailsView/>
+    </DataTemplate>-->
+
+    </UserControl.Resources>
+
+
+    <Grid DataContext="{Binding Path=FieldDetails}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--Row 0, Column 0-->
+        <StackPanel Grid.Row="0" Grid.Column="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="120">
+            <TextBlock Text="Type Name"/>
+            <TextBox Text="{Binding Path=TypeName, Mode=TwoWay}"/>
+        </StackPanel>
+
+        <!--Row 0, Column 1-->
+        <StackPanel Grid.Row="0" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="120">
+            <TextBlock Text="Word Size"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Width="120">
+                    <ComboBoxItem>8</ComboBoxItem>
+                    <ComboBoxItem>16</ComboBoxItem>
+                    <ComboBoxItem>32</ComboBoxItem>
+                    <ComboBoxItem>64</ComboBoxItem>
+                </ComboBox>
+                <!--<TextBox Text="{Binding Path=WordSizeString, Mode=TwoWay}"
+                        Width="103" Height="18"/>-->
+                <!--<ScrollBar Value="{Binding Path=WordSize, Mode=TwoWay}"
+                        Maximum="64"
+                        Minimum="0"
+                        SmallChange="1"
+                        RenderTransformOrigin="0.5,0.5">
+                    <ScrollBar.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                        </TransformGroup>
+                    </ScrollBar.RenderTransform>
+                </ScrollBar>-->
+            </StackPanel>
+        </StackPanel>
+
+        <!--Row 0, Column 2-->
+        <StackPanel Grid.Row="0" Grid.Column="2"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="120">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Number of  "/>
+                <ComboBox Width="50">
+                    <ComboBoxItem>Words</ComboBoxItem>
+                    <ComboBoxItem>Bytes</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Path=NumWordsBytesString, Mode=TwoWay}"
+                        Width="103" Height="18"/>
+                <ScrollBar Value="{Binding Path=NumWordsBytes, Mode=TwoWay}"
+                        Maximum="100"
+                        Minimum="0"
+                        SmallChange="1"
+                        RenderTransformOrigin="0.5,0.5">
+                    <ScrollBar.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                        </TransformGroup>
+                    </ScrollBar.RenderTransform>
+                </ScrollBar>
+            </StackPanel>
+        </StackPanel>
+
+
+        <!--Row 0, Column 3-->
+        <StackPanel Grid.Row="0" Grid.Column="3"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="180">
+            <CheckBox IsChecked="{Binding Path=ConstantValueEnabled, Mode=TwoWay}">
+                <TextBlock>
+                    Contains a Sync Character
+                    <LineBreak/>
+                    or Start of Transmission Flag
+                </TextBlock>
+            </CheckBox>
+            <TextBox IsEnabled="{Binding Path=ConstantValueEnabled}"
+                    Text="{Binding Path=ConstantValue}"/>
+
+        </StackPanel>
+
+        <!--Row 1, Column 0-->
+        <StackPanel Grid.Row="1" Grid.Column="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="120">
+            <CheckBox Content="Special Type"
+                    IsChecked="{Binding Path=IsSpecialType}"/>
+            <ComboBox IsEnabled="{Binding Path=IsSpecialType}"
+                    ItemsSource="{StaticResource ResourceKey=SpecialTypes}"
+                    SelectedItem="{Binding Path=SpecialType}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Path=SpecialLengthString}"
+                        Visibility="{Binding Path=SpecialTypeVisibility}"
+                        Width="103" Height="18"/>
+                <ScrollBar Value="{Binding Path=SpecialLength, Mode=TwoWay}"
+                        Maximum="1024"
+                        Minimum="0"
+                        SmallChange="1"
+                        Visibility="{Binding Path=SpecialTypeVisibility}"
+                        RenderTransformOrigin="0.5,0.5">
+                    <ScrollBar.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                        </TransformGroup>
+                    </ScrollBar.RenderTransform>
+                </ScrollBar>
+            </StackPanel>
+
+            <!--Define enum for specifying message type-->
+        </StackPanel>
+
+        <!--Row 1, Column 1-->
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="120">
+            <CheckBox Content="Duplicable"
+                    IsChecked="{Binding Path=IsDuplicable}"/>
+            <ComboBox IsEnabled="{Binding Path=IsDuplicable}"
+                    ItemsSource="{StaticResource ResourceKey=DuplicableTypes}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Path=DuplicableValue}"
+                        Width="103" Height="18"
+                        />
+                <ScrollBar Value="{Binding Path=FieldDetails.BitLength, Mode=TwoWay}"
+                        Maximum="{Binding Path=FieldDetails.MessageTypeParent.MessageFields.Count}"
+                        Minimum="0"
+                        SmallChange="1"
+                        RenderTransformOrigin="0.5,0.5">
+                    <ScrollBar.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                        </TransformGroup>
+                    </ScrollBar.RenderTransform>
+                </ScrollBar>
+            </StackPanel>
+        </StackPanel>
+
+        <!--Row 1, Column 2-->
+        <StackPanel Grid.Row="1" Grid.Column="2"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        </StackPanel>
+
+        <!--Row 1, Column 3-->
+        <StackPanel Grid.Row="1" Grid.Column="3"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        </StackPanel>
+
+        <!--Row 2, Column 0-->
+        <StackPanel Grid.Row="2" Grid.Column="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        </StackPanel>
+
+
+
+
+        <Button Content="Cancel"
+            Grid.Column="0"
+            Grid.Row="3"
+            Command="{Binding Path=ButtonPress}" CommandParameter="{Binding Path=FieldDetails}"
+            />
+        <Button Content="OK"
+            Grid.Column="3"
+            Grid.Row="3"
+            Command="{Binding Path=ButtonPress}" CommandParameter="{Binding Path=FieldDetails}"
+            />
+
+
+
+
+
+
+
+
+
+        </Grid>
+</UserControl>

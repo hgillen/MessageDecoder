@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="MessageDecoder.Views.MessageTypeTreeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessageDecoder.Views"
+             xmlns:viewModel="clr-namespace:MessageDecoder.ViewModels"
+             xmlns:model="clr-namespace:MessageDecoder.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <!--<UserControl.DataContext>
+        <viewModel:MessageTypeTreeViewModel/>
+    </UserControl.DataContext>-->
+
+    <UserControl.Resources>
+        <ContextMenu x:Key="TreeContext">
+            <MenuItem Header="Add Type"
+                      Command="{Binding AddTypeCommand}"
+                      CommandParameter=""/>
+        </ContextMenu>
+
+        <ContextMenu x:Key="ItemContext">
+            <MenuItem Header="Rename"
+                              Command="{Binding RenameCommand}"/>
+            <MenuItem Header="Details"
+                              Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                              Path=DataContext.TypeDetails}"
+                              CommandParameter="{Binding}"/>
+            <MenuItem Header="Delete"
+                              Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MessageTypeTreeView}},
+                              Path=DataContext.DeleteCommand}"
+                              CommandParameter="{Binding }"/>
+            <MenuItem Header="Add Subtype"
+                              Command="{Binding AddSubtypeCommand}"/>
+        </ContextMenu>
+
+
+        <ControlTemplate x:Key="Normal Template">
+            <TextBlock Text="{Binding Path=SubtypeName, Mode=OneWay}"/>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="Edit Template">
+            <TextBox Text="{Binding Path=SubtypeName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+        </ControlTemplate>
+
+
+        <ControlTemplate x:Key="TreeButtonTemplate" TargetType="{x:Type Button}">
+            <Grid>
+                <TextBlock Text="{TemplateBinding Content}"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="TreeButtonSelectedTemplate" TargetType="{x:Type Button}">
+            <Grid>
+                <TextBlock Text="{TemplateBinding Content}"
+                           FontWeight="Bold"/>
+            </Grid>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="TreeButtonDataTemplate">
+            <Button Template="{StaticResource TreeButtonTemplate}"
+                                            Content="{Binding Path=SubtypeName, Mode=OneWay}"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                                                    Path=DataContext.SelectType}"
+                                            CommandParameter="{Binding }"/>
+
+            <!--<Button Template="{StaticResource TreeButton}"
+                                        Style="{StaticResource TreeButton}"
+                                            Content="{Binding Path=SubtypeName, Mode=OneWay}"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                                                    Path=DataContext.SelectType}"
+                                            CommandParameter="{Binding }">
+                                    </Button>-->
+
+            <!--<TextBlock Text="{Binding Path=SubtypeName, Mode=OneWay}"/>-->
+        </DataTemplate>
+
+        <DataTemplate x:Key="TreeButtonDataSelectedTemplate">
+            <Button Template="{StaticResource TreeButtonSelectedTemplate}"
+                                                Content="{Binding Path=SubtypeName}"/>
+        </DataTemplate>
+
+
+    </UserControl.Resources>
+
+
+    <Grid>
+        <TreeView ItemsSource="{Binding Path=MessageTypes, Mode=OneWay}"
+                  ContextMenu="{StaticResource TreeContext}">
+
+
+
+            <!--<TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=UseEditTemplate}" Value="True">
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>-->
+            <!--<TreeView.ItemTemplate>
+                <HierarchicalDataTemplate
+                    DataType="{x:Type model:MessageTypeTreeModel}"
+                    ItemsSource="{Binding Path=MessageSubtypes}">
+
+                    <TextBlock Text="{Binding Path=SubtypeName}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>-->
+
+
+
+
+            <!--<TreeView.ItemTemplate>
+                <HierarchicalDataTemplate
+                    DataType="{x:Type model:MessageTypeTreeModel}"
+                    ItemsSource="{Binding Path=MessageSubtypes}">
+
+                    <TextBlock Text="{Binding Path=SubtypeName}"/>
+                    <TextBox Text="{Binding Path=SubtypeName, Mode=TwoWay}"/>
+
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>-->
+            
+            <TreeView.Resources>
+
+                <!--<ContextMenu x:Key="ItemContext">
+                    <MenuItem Header="Rename"
+                              Command="{Binding RenameCommand}"/>
+                    <MenuItem Header="Details"
+                              Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                              Path=DataContext.TypeDetails}"
+                              CommandParameter="{Binding}"/>
+                    <MenuItem Header="Delete"
+                              Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MessageTypeTreeView}},
+                              Path=DataContext.DeleteCommand}"
+                              CommandParameter="{Binding }"/>
+                    <MenuItem Header="Add Subtype"
+                              Command="{Binding AddSubtypeCommand}"/>
+                </ContextMenu>-->
+
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <!--<Setter Property="Header" Value="{Binding Path=SubtypeName, Mode=OneWay}"/>-->
+                    <Setter Property="IsExpanded" Value="True"/>
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=OneWayToSource}"/>
+                    <Setter Property="ContextMenu" Value="{StaticResource ItemContext}"/>
+                    <Setter Property="ItemsSource" Value="{Binding Path=MessageSubtypes}"/>
+                    <Setter Property="Margin" Value="3,5,3,5"/>
+
+                    <!--<Setter Property="Template" Value="{StaticResource Normal Template}"/>-->
+                    <!--<Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=UseEditTemplate}" Value="True">
+                            <Setter Property="Template" Value="{StaticResource Edit Template}"/>
+                        </DataTrigger>
+                    </Style.Triggers>-->
+
+
+                    <Style.Triggers>
+                        <!--<DataTrigger Binding="{Binding Path=UseEditTemplate}" Value="True">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=SubtypeName, Mode=TwoWay}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>-->
+                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
+                            <Setter Property="HeaderTemplate" Value="{StaticResource ResourceKey=TreeButtonDataTemplate}"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
+                            <Setter Property="HeaderTemplate" Value="{StaticResource ResourceKey=TreeButtonDataSelectedTemplate}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+
+
+
+                </Style>
+
+
+                <!--<HierarchicalDataTemplate
+                    DataType="{x:Type model:MessageTypeTreeModel}"
+                    ItemsSource="{Binding Path=MessageSubtypes}">
+
+                    <TextBox Text="{Binding Path=SubtypeName}"/>
+
+                </HierarchicalDataTemplate>-->
+
+            </TreeView.Resources>
+
+        </TreeView>
+      
+    </Grid>
+   
+</UserControl>

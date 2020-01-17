@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MessageDecoder.Views.MessageStructureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessageDecoder.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   
+    <Grid Margin="3,5,3,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <local:MessageTypeTreeView x:Name="MessageTypeTreeViewControl"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   Margin="3,5,3,5"
+                                   DataContext="{Binding Path=Vm_MessageTypeTree}"/>
+
+      <!--<local:MessageTypeButtonsView x:Name="MessageTypeButtonsViewControl"
+                                    Grid.Column="1"/>-->
+
+        <!--<local:MessageFieldsView x:Name="MessageFieldsViewControl"
+                                 Grid.Column="0"
+                                 Grid.Row="1"
+                                 Margin="3,5,3,5"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"/>-->
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+<Type Name="Test Type">
+	<Field Name="Test Field" Word="1" Bit="2" Length="3"\>
+	<Field Name="New Field" Word="0" Bit="1" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="2" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="3" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="4" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="5" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="6" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="7" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="8" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="9" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="10" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="11" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="12" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="13" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="14" Length="1"\>
+	<Field Name="New Field" Word="0" Bit="15" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="0" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="1" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="2" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="3" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="4" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="5" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="6" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="7" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="8" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="9" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="10" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="11" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="12" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="13" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="14" Length="1"\>
+	<Field Name="New Field" Word="1" Bit="15" Length="1"\>
+<\Type>
+
+ 

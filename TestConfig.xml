@@ -1,0 +1,12 @@
+<MessageType>
+  <Name>New Type 1</Name>
+  <MessageType>
+    <Name>New Subtype 1</Name>
+    <MessageType>
+      <Name>New Subsubtype 1</Name>
+    </MessageType>
+  </MessageType>
+  <MessageType>
+    <Name>New Subtype 2</Name>
+  </MessageType>
+</MessageType>
