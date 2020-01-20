@@ -20,7 +20,7 @@ namespace MessageDecoder.Models
 
         #region Models
 
-        public MessageTypeCollection MessageTypes { get; set; }
+        public MessageTypeCollection Configuration { get; set; }
         //public ObservableCollection<MessageFieldModel> MessageFields { get; set; }
         public ObservableCollection<MenuBarItemModel> TopMenu { get; private set; }
         private MainViewModel MainParent;
@@ -116,18 +116,18 @@ namespace MessageDecoder.Models
             MainParent = parent;
             SelectedMessageType = null;
 
-            //MessageTypes = new MessageTypeCollection
+            //Configuration = new MessageTypeCollection
             //{
             //    new MessageTypeTreeModel
             //    {
             //        SubtypeName = "New Type",
             //    }
             //};
-            //MessageTypes[0].Parent = MessageTypes;
-            //MessageTypes[0].MainParent = this;
-            //MessageTypes[0].IsSelected = true;
+            //Configuration[0].Parent = Configuration;
+            //Configuration[0].MainParent = this;
+            //Configuration[0].IsSelected = true;
 
-            //SelectedMessageType = MessageTypes[0];
+            //SelectedMessageType = Configuration[0];
             //MessageFields = SelectedMessageType.MessageFields;
 
             //// Initialize the top menu
@@ -207,7 +207,7 @@ namespace MessageDecoder.Models
         //        {
         //            configFilePath = openFileDialog.FileName;
         //            // Clear all current types
-        //            MessageTypes.Clear();
+        //            Configuration.Clear();
 
         //            // Read in new types
         //            ReadConfig(configFilePath);
@@ -248,7 +248,7 @@ namespace MessageDecoder.Models
         //{
         //    using (StreamWriter streamWriter = new StreamWriter(filename, false))
         //    {
-        //        foreach (MessageTypeTreeModel mttm in MessageTypes)
+        //        foreach (MessageTypeTreeModel mttm in Configuration)
         //        {
         //            streamWriter.WriteLine(mttm.SaveConfig());
         //        }
@@ -285,7 +285,7 @@ namespace MessageDecoder.Models
         //                messageTypeTree = new MessageTypeTreeModel();
         //                messageTypeTree.ReadConfig(typeMatch.Groups[1].Value);
 
-        //                MessageTypes.Add(messageTypeTree);
+        //                Configuration.Add(messageTypeTree);
         //            }
         //        }
         //    }

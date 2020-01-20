@@ -244,12 +244,13 @@ namespace MessageDecoder.Models
 
         public bool IsMatch(byte[] bytes)
         {
-            return MessageFields.IsMatch(bytes);
+            return ByteCount <= bytes.Length;
+            //return MessageFields.IsMatch(bytes);
         }
 
 
 
-        public FileTextModel ExtractMatch(byte[] bytes)
+        public FileTextModel GetMatch(byte[] bytes)
         {
             FileTextModel fileTextModel = new FileTextModel();
             ByteCount = 32;
@@ -269,11 +270,12 @@ namespace MessageDecoder.Models
             //    }
             //}
 
-            for (int i = 0; i < ByteCount; i++)
-            {
-                byteSubset[i] = bytes[i];
-            }
+            //for (int i = 0; i < ByteCount; i++)
+            //{
+            //    byteSubset[i] = bytes[i];
+            //}
 
+            Array.Copy(bytes, 0, byteSubset, 0, ByteCount);
             fileTextModel.RawData = byteSubset;
             return fileTextModel;
         }

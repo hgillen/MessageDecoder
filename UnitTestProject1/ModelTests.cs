@@ -17,8 +17,8 @@ namespace ModelTests
             [TestMethod]
             public void BaseConstructor()
             {
-                Assert.IsNotNull(mm.MessageTypes);
-                Assert.AreEqual(1, mm.MessageTypes.Count);
+                Assert.IsNotNull(mm.Configuration);
+                Assert.AreEqual(1, mm.Configuration.Count);
                 //Assert.IsNotNull(mm.MessageFields);
                 //Assert.AreEqual(mm.IsDetails, false);
                 //Assert.AreEqual(mm.CurrentField, null);

@@ -66,13 +66,23 @@ namespace MessageDecoder.Models
             set { fileText = value; }
         }
 
+
+        public int Length
+        {
+            get
+            {
+                return RawData.Length;
+            }
+        }
+
+
         #endregion
 
 
 
         public FileTextModel()
         {
-            _rawData = new byte[]{ 9, 8, 7, 6};
+            _rawData = new byte[] { };
         }
 
 

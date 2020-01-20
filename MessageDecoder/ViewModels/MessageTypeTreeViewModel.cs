@@ -18,13 +18,33 @@ namespace MessageDecoder.ViewModels
         public BinaryMessageCollection
             ParseDataFromBytesIntoMessages(byte[] bytes)
         {
+            List<byte> subBytes = bytes.ToList();
+            //int byteIndex = 0;
+            int tempCount = 0;
             BinaryMessageCollection fileTextModels = new BinaryMessageCollection();
-            foreach (MessageTypeTreeModel messageType in this)
+            
+            while (subBytes.Count > 0)
             {
-                // if messageType contains a STF or other constant fields
-                if (true) //messageType.IsMatch(bytes))
+                tempCount = subBytes.Count;
+                foreach (MessageTypeTreeModel messageType in this)
                 {
-                    fileTextModels.Add(messageType.ExtractMatch(bytes));
+                    // if messageType contains a STF or other constant fields
+                    if (messageType.IsMatch(subBytes.ToArray()))
+                    {
+                        FileTextModel ftm = messageType.GetMatch(subBytes.ToArray());
+                        subBytes.RemoveRange(0, ftm.Length);
+                        //byteIndex += ftm.Length;
+                        fileTextModels.Add(ftm);
+                    }
+                }
+                if (tempCount == subBytes.Count)
+                {
+                    FileTextModel ftm = new FileTextModel()
+                    {
+                        RawData = subBytes.ToArray()
+                    };
+                    fileTextModels.Add(ftm);
+                    subBytes.Clear();
                 }
             }
 
